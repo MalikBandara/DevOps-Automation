@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#087d69">
+  <meta name="description" content="MediCart, a local health and wellness shopping demo.">
+  <title>MediCart | Everyday care, made simple</title>
+  <link rel="stylesheet" href="/style.css">
+  <script src="/app.js" defer></script>
+</head>
+<body>
+  <div class="announcement">A little care goes a long way. <span>Your everyday wellness essentials, in one place.</span></div>
+  <header class="wrap header">
+    <a class="brand" href="/" aria-label="MediCart home"><span class="brand-icon">✚</span>Medi<span>Cart</span></a>
+    <span class="header-note">Your everyday care companion</span>
+    <a class="cart-link" href="#cart-panel">My cart <span id="cart-count">0</span></a>
+  </header>
+  <main class="wrap">
+    <section class="hero">
+      <div><p class="eyebrow">FEEL GOOD. LIVE WELL.</p><h1>Everyday care,<br>made simple<span>.</span></h1><p class="hero-copy">A healthier day starts with the little things.<br>Find your health and wellness essentials at MediCart.</p><a href="#catalog" class="primary">Explore essentials <span aria-hidden="true">↗</span></a></div>
+      <div class="hero-art" aria-hidden="true"><div class="orbit"></div><div class="care-box"><span class="box-cross">✚</span><b>MediCart</b><small>A little box of care</small></div><span class="care-tag">♡ A little care, every day</span></div>
+    </section>
+    <div class="perks"><span>✚ &nbsp; Everyday essentials</span><span>♡ &nbsp; Care for the whole family</span><span>⌂ &nbsp; Powered by a local Node server</span></div>
+    <div class="shopping-layout">
+      <section id="catalog" aria-labelledby="catalog-title">
+        <div class="section-heading"><div><p class="eyebrow">YOUR WELLNESS SHELF</p><h2 id="catalog-title">Explore essentials</h2></div><span id="product-count" role="status"></span></div>
+        <label class="search"><span aria-hidden="true">⌕</span><input id="search" type="search" aria-label="Search products" placeholder="Search for a product…"></label>
+        <div class="filters" aria-label="Product categories">
+          <button data-category="All products" class="active" aria-pressed="true">All products</button>
+          <button data-category="Vitamins" aria-pressed="false">Vitamins</button>
+          <button data-category="First aid" aria-pressed="false">First aid</button>
+          <button data-category="Devices" aria-pressed="false">Devices</button>
+          <button data-category="Personal care" aria-pressed="false">Personal care</button>
+        </div>
+        <div class="products" id="products"><p>Loading your wellness shelf…</p></div>
+      </section>
+      <aside class="cart-panel" id="cart-panel" aria-labelledby="cart-title">
+        <div class="cart-heading"><h2 id="cart-title">Your cart</h2><span class="badge">LOCAL DEMO</span></div>
+        <div id="cart-items"></div>
+        <div class="totals"><div><span>Subtotal</span><strong id="subtotal">Rs. 0</strong></div><div><span>Delivery</span><span>Demo · Free</span></div><div class="grand-total"><strong>Total</strong><strong id="total">Rs. 0</strong></div></div>
+        <button class="primary checkout" id="checkout" disabled>Demo checkout <span aria-hidden="true">→</span></button>
+        <p class="cart-note">Sample checkout. No payment required.</p>
+      </aside>
+    </div>
+    <p class="demo-note">ⓘ &nbsp; Sample products and prices only. For health advice, speak with a qualified professional.</p>
+  </main>
+  <footer class="wrap"><strong>✚ MediCart</strong><span>A little care, every day.</span></footer>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <dialog id="confirmation"><div class="success-icon">✓</div><p class="eyebrow">ALL SET!</p><h2>Thanks for trying MediCart.</h2><p id="order-message"></p><p>This is a demo confirmation. No real order was placed and no payment was taken.</p><button class="primary" id="close-confirmation">Continue shopping</button></dialog>
+</body>
+</html>
