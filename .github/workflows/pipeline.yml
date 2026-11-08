@@ -1,9 +1,56 @@
 name: MediCart pipeline
-on: push
+
+on:
+  push:
+    branches: [main, feature/add-cd]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
 jobs:
   build-test:
+    name: CI - build and test
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Run tests
-        run: echo "All tests passed" && exit 0
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - name: Install
+        run: npm ci
+
+      - name: Build
+        run: npm run build
+
+      - name: Test
+        run: npm test
+
+  deliver:
+    name: CD - deliver build artifact
+    needs: build-test
+    if: github.event_name == 'push'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - name: Install
+        run: npm ci
+
+      - name: Build
+        run: npm run build
+
+      - name: Upload build artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: medicart-build-${{ github.sha }}
+          path: dist/
+          if-no-files-found: error
+          retention-days: 7
