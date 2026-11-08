@@ -28,6 +28,17 @@ jobs:
       - name: Test
         run: npm test
 
+      - name: Build Docker image
+        run: docker build -t medicart:ci .
+
+      - name: Smoke test the container
+        run: |
+          docker run -d --name medicart -p 3000:3000 medicart:ci
+          sleep 3
+          curl -sf http://localhost:3000/health
+          curl -sf "http://localhost:3000/total?price=500&qty=2"
+          docker rm -f medicart
+
   deliver:
     name: CD - deliver build artifact
     needs: build-test
